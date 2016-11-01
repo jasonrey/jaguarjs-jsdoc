@@ -2,12 +2,12 @@
 var self = this;
 ?>
 <div class="navigation">
-    <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
+    <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName || 'Documentation' ?></a></h3>
 
     <div class="search">
         <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
     </div>
-    <ul class="list">
+    <ul class="list" data-current="<?js= this.navname ?>">
     <?js
     this.nav.forEach(function (item) {
     ?>
