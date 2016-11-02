@@ -1,15 +1,5 @@
 @import "common.less";
 
-::-webkit-scrollbar {
-    width: 8px;
-    background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: gray;
-    border-radius: 4px;
-}
-
 .navigation {
     position: fixed;
     float: left;
@@ -40,16 +30,17 @@
     }
 
     .list {
-        padding: 10px 15px 0 15px;
+        padding: 0 10px;
         position: relative;
-        overflow: auto;
-        width: 100%;
     }
 
     li.item {
-        margin-bottom: 8px;
-        padding-bottom: 8px;
+        margin-bottom: 10px;
         border-bottom: 1px solid #333;
+
+        +.item {
+            margin-bottom: 0;
+        }
 
         a {
             color: #bbb;
@@ -57,6 +48,7 @@
                 color: #fff;
             }
         }
+
         .title {
             cursor: pointer;
             position: relative;
@@ -87,13 +79,55 @@
             display: block;
         }
 
-
         ul {
+            margin-bottom: 10px;
+
             & > li {
-                font-size: 0.7em;
-                padding-left: 8px;
-                margin-top: 2px;
+                line-height: 24px;
+
+                a {
+                    display: block;
+                    font-size: 12px;
+                    padding: 0 0 0 10px;
+                    margin-left: 10px;
+                    border-left: 1px solid #779c34;
+                }
+
+                &.sub-separator {
+                    font-size: 12px;
+                    color: rgba(119, 156, 52, 0.7);
+                    padding: 0 0 0 15px;
+                }
             }
         }
+    }
+
+    .nav-category-group {
+        padding: 15px 15px 0 15px;
+    }
+
+    h4 {
+        color: #ccc;
+        margin: 0;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 30px;
+    }
+
+    h5 {
+        margin: 0;
+        padding: 0;
+
+        a {
+            display: block;
+            line-height: 30px;
+        }
+    }
+
+    h6 {
+        margin: 0;
+        padding: 0 0 0 10px;
+        line-height: 24px;
+        color: #779c34;
     }
 }

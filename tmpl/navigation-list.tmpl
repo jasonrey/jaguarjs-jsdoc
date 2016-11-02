@@ -1,0 +1,58 @@
+<ul class="list">
+    <?js items.forEach(function(item) { ?>
+
+    <li class="item" data-name="<?js= item.longname ?>">
+        <h5>
+            <?js= self.linkto(item.longname, item.longname) ?>
+            <?js if (item.type === 'namespace') { ?>
+            <span class="static">static</span>
+            <?js } ?>
+        </h5>
+
+        <?js if (item.members.length) { ?>
+        <h6>Members</h6>
+        <ul class="members itemMembers">
+            <?js item.members.forEach(function (v) { ?>
+            <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js }); ?>
+        </ul>
+        <?js } ?>
+
+        <?js if (item.typedefs.length) { ?>
+        <h6>Typedefs</h6>
+        <ul class="typedefs itemMembers">
+            <?js item.typedefs.forEach(function (v) { ?>
+            <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js }); ?>
+        </ul>
+        <?js } ?>
+
+        <?js if (item.methods.length) { ?>
+        <h6>Methods</h6>
+        <ul class="methods itemMembers">
+            <?js item.methods.filter(v => !v.inherited).forEach(function (v) { ?>
+            <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js }); ?>
+
+            <?js if (item.methods.filter(v => v.inherited).length > 0) { ?>
+            <li class="sub-separator">Inherited</li>
+
+            <?js item.methods.filter(v => v.inherited).forEach(function (v) { ?>
+            <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js }); ?>
+            <?js } ?>
+        </ul>
+        <?js } ?>
+
+        <?js if (item.events.length) { ?>
+        <h6>Events</h6>
+        <ul class="events itemMembers">
+            <?js item.events.forEach(function (v) { ?>
+            <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+            <?js }); ?>
+        </ul>
+        <?js } ?>
+    </li>
+
+    <?js }); ?>
+</ul>

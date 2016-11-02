@@ -187,6 +187,33 @@ function attachModuleSymbols(doclets, modules) {
 }
 
 /**
+ * Navigation item construct
+ */
+function buildNavItem(type, item) {
+    return {
+        type: type,
+        longname: item.longname,
+        name: item.name,
+        members: find({
+            kind: 'member',
+            memberof: item.longname
+        }),
+        methods: find({
+            kind: 'function',
+            memberof: item.longname
+        }),
+        typedefs: find({
+            kind: 'typedef',
+            memberof: item.longname
+        }),
+        events: find({
+            kind: 'event',
+            memberof: item.longname
+        })
+    };
+}
+
+/**
  * Create the navigation sidebar.
  * @param {object} members The members that will be used to create the sidebar.
  * @param {array<object>} members.classes
@@ -200,7 +227,40 @@ function attachModuleSymbols(doclets, modules) {
  * @return {string} The HTML for the navigation sidebar.
  */
 function buildNav(members) {
-    var nav = [];
+    var nav = {};
+
+    Object.keys(members).forEach(function(type) {
+        let member = members[type];
+        nav[type] = {
+            categories: {},
+            nocategory: [],
+            all: []
+        };
+
+        _.each(member, function(item) {
+            let navItem = buildNavItem(type, item);
+
+            if (item.tags) {
+                item.tags.forEach(function(tag) {
+                    if (tag.title === 'category') {
+                        if (nav[type].categories[tag.value] === undefined) {
+                            nav[type].categories[tag.value] = [];
+                        }
+
+                        nav[type].categories[tag.value].push(navItem);
+                    } else {
+                        nav[type].nocategory.push(navItem);
+                    }
+                });
+            } else {
+                nav[type].nocategory.push(navItem);
+            }
+
+            nav[type].all.push(navItem);
+        });
+    });
+
+    return nav;
 
     if (members.namespaces.length) {
         _.each(members.namespaces, function (v) {
@@ -287,6 +347,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     helper.setTutorials(tutorials);
 
     data = helper.prune(data);
+
     data.sort('longname, version, since');
     helper.addEventListeners(data);
 

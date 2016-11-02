@@ -111,9 +111,24 @@
     ?>
         <h3 class="subsection-title">Methods</h3>
 
-        <dl><?js methods.forEach(function(m) { ?>
-            <?js= self.partial('method.tmpl', m) ?>
-        <?js }); ?></dl>
+        <dl>
+        <?js methods.forEach(function(m) { ?>
+            <?js if (!m.inherited) { ?>
+                <?js= self.partial('method.tmpl', m) ?>
+            <?js } ?>
+        <?js }); ?>
+        </dl>
+
+        <?js if (methods.filter(m => m.inherited).length) { ?>
+        <h4 class="subsection-title">Inherited Methods</h4>
+        <dl>
+        <?js methods.forEach(function(m) { ?>
+            <?js if (m.inherited) { ?>
+                <?js= self.partial('method.tmpl', m) ?>
+            <?js } ?>
+        <?js }); ?>
+        </dl>
+        <?js } ?>
     <?js } ?>
 
     <?js

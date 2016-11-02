@@ -25,16 +25,6 @@ $(function () {
         $navigation.find('.list').scrollTop(0);
     });
 
-    // Auto resizing on navigation
-    var _onResize = function () {
-        var height = $(window).height();
-
-        $navigation.height(height).find('.list').height(height - 133);
-    };
-
-    $(window).on('resize', _onResize);
-    _onResize();
-
     // disqus code
     if (config.disqus) {
         $(window).on('load', function () {
