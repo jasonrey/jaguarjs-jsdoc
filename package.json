@@ -1,8 +1,8 @@
 {
-  "name": "jaguarjs-jsdoc",
+  "name": "compassinteractive-jaguarjs-jsdoc-theme",
   "version": "0.0.1",
-  "description": "Jaguar.js template for JSDoc 3",
-  "main": "Gruntfile.js",
+  "description": "Forked and modified Jaguar.js template for JSDoc 3 for Compass Interactive use",
+  "main": "publish.js",
   "dependencies": {
   },
   "devDependencies": {
@@ -16,12 +16,9 @@
     "grunt-jsdoc": "~0.5.1",
     "grunt-contrib-connect": "~0.6.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/davidshimjs/jaguarjs-jsdoc.git"
+    "url": "git://github.com/jasonrey/jaguarjs-jsdoc.git"
   },
   "keywords": [
     "jsdoc",
@@ -29,10 +26,10 @@
     "jaguar.js",
     "template"
   ],
-  "author": "davidshimjs",
+  "author": "jasonrey",
   "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/davidshimjs/jaguarjs-jsdoc/issues"
+    "url": "https://github.com/jasonrey/jaguarjs-jsdoc/issues"
   }
 }
